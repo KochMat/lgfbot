@@ -7,12 +7,19 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
-public class bot {
+import static java.lang.System.getenv;
 
+
+public class bot {
     public static JDA api;
 
     public static void main(String[] arguments) throws Exception {
-        api = JDABuilder.createDefault("").enableIntents(GatewayIntent.GUILD_MEMBERS).setMemberCachePolicy(MemberCachePolicy.ALL).build();
+        //String Token = process.env.API_KEY;
+        String token = System.getenv().getOrDefault("TOKEN", "TOKEN LAEDT NICHT");
+
+        System.out.println(token);
+
+        api = JDABuilder.createDefault(token).enableIntents(GatewayIntent.GUILD_MEMBERS).setMemberCachePolicy(MemberCachePolicy.ALL).build();
         api.getPresence().setPresence(OnlineStatus.DO_NOT_DISTURB,Activity.playing("mit Feuer"));
         api.addEventListener(new laeuft());
         api.addEventListener(new r6());

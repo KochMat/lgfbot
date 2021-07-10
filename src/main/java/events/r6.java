@@ -1,11 +1,13 @@
 package events;
 
 
+import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceLeaveEvent;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -18,17 +20,24 @@ public class r6 extends ListenerAdapter {
 
         }
 
-        if (Objects.requireNonNull(event.getChannelLeft()).getName().equals("R6[TEMP]") && event.getChannelLeft().getMembers().isEmpty()) {
 
-            event.getChannelLeft().delete().queue();
-
+        if (!event.getGuild().getVoiceChannelsByName("R6[TEMP]", false).isEmpty()){
+            List<VoiceChannel> voice = event.getGuild().getVoiceChannelsByName("R6[TEMP]",false);
+            for(int i = voice.size(); i > 0; i--){
+                if(voice.get(i-1).getMembers().isEmpty()){
+                    voice.get(i-1).delete().queue();
+                }
+            }
         }
     }
     public void onGuildVoiceLeave(@Nonnull GuildVoiceLeaveEvent event){
-       if (event.getChannelLeft().getName().equals("R6[TEMP]") && event.getChannelLeft().getMembers().isEmpty()) {
-
-            event.getChannelLeft().delete().queue();
-
-       }
+        if (!event.getGuild().getVoiceChannelsByName("R6[TEMP]", false).isEmpty()) {
+            List<VoiceChannel> voice = event.getGuild().getVoiceChannelsByName("R6[TEMP]", false);
+            for (int i = voice.size(); i > 0; i--) {
+                if (voice.get(i - 1).getMembers().isEmpty()) {
+                    voice.get(i - 1).delete().queue();
+                }
+            }
+        }
    }
 }

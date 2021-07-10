@@ -1,8 +1,8 @@
-events/r6.java
- events.r6
-events/laeuft.java
- events.laeuft
 events/role.java
  events.role
+events/laeuft.java
+ events.laeuft
+events/r6.java
+ events.r6
 bot.java
  bot
