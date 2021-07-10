@@ -1,1 +1,1 @@
-worker: java -jar build\libs\lgf-1.0-all.jar
+worker: java -jar build/libs/lgf-1.0-all.jar
