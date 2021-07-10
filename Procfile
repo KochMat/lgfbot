@@ -1,0 +1,1 @@
+worker: java -jar target\build\libs\lgf-1.0-all.jar
