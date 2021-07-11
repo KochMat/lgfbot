@@ -14,12 +14,8 @@ public class bot {
     public static JDA api;
 
     public static void main(String[] arguments) throws Exception {
-        //String Token = process.env.API_KEY;
-        String token = System.getenv().getOrDefault("TOKEN", "TOKEN LAEDT NICHT");
-
-        System.out.println(token);
-
-        api = JDABuilder.createDefault(token).enableIntents(GatewayIntent.GUILD_MEMBERS).setMemberCachePolicy(MemberCachePolicy.ALL).build();
+        System.out.println(System.getenv("TOKEN"));
+        api = JDABuilder.createDefault(System.getenv("TOKEN")).enableIntents(GatewayIntent.GUILD_MEMBERS).setMemberCachePolicy(MemberCachePolicy.ALL).build();
         api.getPresence().setPresence(OnlineStatus.DO_NOT_DISTURB,Activity.playing("mit Feuer"));
         api.addEventListener(new laeuft());
         api.addEventListener(new r6());
